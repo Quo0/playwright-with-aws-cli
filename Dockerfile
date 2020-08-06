@@ -58,14 +58,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ffmpeg
 
-# 7. Add user so we don't need --no-sandbox in Chromium
-RUN groupadd -r pwuser && useradd -r -g pwuser -G audio,video pwuser \
-    && mkdir -p /home/pwuser/Downloads \
-    && chown -R pwuser:pwuser /home/pwuser
-
-# 8. (Optional) Install XVFB if there's a need to run browsers in headful mode
+# 7. Install XVFB if there's a need to run browsers in headful mode
 RUN apt-get update && apt-get install -y --no-install-recommends \
     xvfb
-
-# 9. Run everything after as non-privileged user.
-USER pwuser
