@@ -1,9 +1,13 @@
 FROM ubuntu:bionic
 
-# 0. Install node12
+# -. Install node12
 RUN apt-get update && apt-get install -y curl && \
     curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
     apt-get install -y nodejs
+
+# 0. Install GIT
+RUN apt-get install -y git
+RUN git --version
 
 # 1. Install AWS CLI
 ENV TZ=Europe/Moscow
